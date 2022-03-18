@@ -8,6 +8,11 @@ const initialState: ListState = {
 
 export const listReducer = (state = initialState, action: ListAction): ListState => {
     switch (action.type) {
+        case ListTaskTypes.ADD_TASK_LIST:
+            return {
+                ...state,
+                list: [...state.list, action.payload],
+            }
         case ListTaskTypes.LIST_TASK_SUCCESS:
             return {
                 ...state,
