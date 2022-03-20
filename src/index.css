@@ -8,3 +8,9 @@
     width: 500px;
     margin: 0 auto;
 }
+
+.spin {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}

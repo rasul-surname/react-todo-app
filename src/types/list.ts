@@ -1,22 +1,22 @@
 export interface ListState {
-    list: any[];
+    listTasks: any[];
     loading: boolean;
     error: null | string;
 }
 export enum ListTaskTypes {
-    ADD_TASK_LIST = "ADD_TASK_LIST",
-    LIST_TASK_SUCCESS = "LIST_TASK_SUCCESS",
-    LIST_TASK_ERROR = "LIST_TASK_ERROR",
+    FETCH_LIST_TASKS = "FETCH_LIST_TASKS",
+    FETCH_TASKS_SUCCESS = "FETCH_TASKS_SUCCESS",
+    FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR",
 }
-interface ADD_TASK_LIST {
-    type: ListTaskTypes.ADD_TASK_LIST;
-    payload: [];
+interface FETCH_LIST_TASKS {
+    type: ListTaskTypes.FETCH_LIST_TASKS;
+    payload: any[];
 }
-interface LIST_TASK_SUCCESS {
-    type: ListTaskTypes.LIST_TASK_SUCCESS;
+interface FETCH_TASKS_SUCCESS {
+    type: ListTaskTypes.FETCH_TASKS_SUCCESS;
 }
-interface LIST_TASK_ERROR {
-    type: ListTaskTypes.LIST_TASK_ERROR;
+interface FETCH_TASKS_ERROR {
+    type: ListTaskTypes.FETCH_TASKS_ERROR;
     payload: string;
 }
-export type ListAction = ADD_TASK_LIST | LIST_TASK_SUCCESS | LIST_TASK_ERROR;
+export type ListAction = FETCH_LIST_TASKS | FETCH_TASKS_SUCCESS | FETCH_TASKS_ERROR;

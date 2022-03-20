@@ -1,25 +1,25 @@
 import {ListAction, ListState, ListTaskTypes} from "../../types/list";
 
 const initialState: ListState = {
-    list: [],
+    listTasks: [],
     loading: false,
     error: null,
 }
 
 export const listReducer = (state = initialState, action: ListAction): ListState => {
     switch (action.type) {
-        case ListTaskTypes.ADD_TASK_LIST:
+        case ListTaskTypes.FETCH_LIST_TASKS:
             return {
                 ...state,
-                list: [...state.list, action.payload],
+                listTasks: [...action.payload],
             }
-        case ListTaskTypes.LIST_TASK_SUCCESS:
+        case ListTaskTypes.FETCH_TASKS_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 error: null,
             }
-        case ListTaskTypes.LIST_TASK_ERROR:
+        case ListTaskTypes.FETCH_TASKS_ERROR:
             return {
                 ...state,
                 loading: false,

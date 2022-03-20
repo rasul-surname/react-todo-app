@@ -1,15 +1,33 @@
 import {ListAction, ListTaskTypes} from "../../types/list";
 import {Dispatch} from "redux";
-import axios from "axios";
+import {db} from "../../firebase_config";
 
-export const fetchTask = () => {
+export const fetchTasks = () => {
     return async (dispatch: Dispatch<ListAction>) => {
         try {
-            const response = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
-            dispatch({type: ListTaskTypes.LIST_TASK_SUCCESS});
-            dispatch({type: ListTaskTypes.ADD_TASK_LIST, payload: response.data});
+            await db.collection("todos").onSnapshot(function (querySnapshot: any) {
+                dispatch({type: ListTaskTypes.FETCH_TASKS_SUCCESS});
+                const response = querySnapshot.docs.map((doc:any) => ({
+                    todo: doc.data().todo,
+                }))
+
+                dispatch({type: ListTaskTypes.FETCH_LIST_TASKS, payload: response});
+            })
         } catch (e) {
-            dispatch({type: ListTaskTypes.LIST_TASK_ERROR, payload: 'Произошла ошибка'})
+            console.log('Произошла ошибка');
+            dispatch({type: ListTaskTypes.FETCH_TASKS_ERROR, payload: 'Произошла ошибка'})
+        }
+    }
+}
+
+export const addTaskList = (value: string) => {
+    return async () => {
+        try {
+            await db.collection("todos").add({
+                todo: value,
+            });
+        } catch (e) {
+            console.log('Задача не загрузилась');
         }
     }
 }
