@@ -4,35 +4,9 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.App {
-    width: 500px;
+.content {
+    max-width: 500px;
+    height: 600px;
     margin: 0 auto;
+    padding: 0px 15px;
 }
-
-.spin {
-    display: flex;
-    justify-content: center;
-    margin: 50px;
-}
-
-/* start list_item styles */
-
-.list_item {
-    margin: 10px 0px;
-    padding: 20px;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-.list_item_title {
-    margin: 20px;
-    font-size: 24px;
-}
-.list_item_delete {
-    font-size: 22px;
-}
-
-/* end list_item styles */
