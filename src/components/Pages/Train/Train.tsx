@@ -4,7 +4,7 @@ import BtnComponent from "./BtnComponent/BtnComponent";
 import classes from './Train.module.css';
 
 const Train = () => {
-    const [time, setTime] = useState({ms: 0, s: 0, m: 0, h: 0,});
+    const [time, setTime] = useState({ms: 0, s: 0, m: 0});
     const [interv, setInterv] = useState();
     const [fixTime, setFixTime] = useState({
         list: [],
@@ -26,7 +26,7 @@ const Train = () => {
     }
 
     const reset = () => {
-        setTime({ms: 0, s: 0, m: 0, h: 0,});
+        setTime({ms: 0, s: 0, m: 0});
         setFixTime({...fixTime, list:  []});
     }
 
@@ -40,13 +40,9 @@ const Train = () => {
         }
     }
 
-    let updateMs = time.ms; let updateS = time.s; let updateM = time.m; let updateH = time.h;
+    let updateMs = time.ms; let updateS = time.s; let updateM = time.m;
 
     const run = () => {
-        if(updateM === 60) {
-            updateH++;
-            updateM = 0;
-        }
         if(updateS === 60) {
             updateM++;
             updateS = 0;
@@ -56,7 +52,7 @@ const Train = () => {
             updateMs = 0;
         }
         updateMs++;
-        return setTime({ms: updateMs, s: updateS, m: updateM, h: updateH});
+        return setTime({ms: updateMs, s: updateS, m: updateM});
     }
 
     return (

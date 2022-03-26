@@ -2,19 +2,3 @@
   height: 50px;
   background-color: #F6F6F6;
 }
-.footer__body {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  max-width: 500px;
-
-  height: 100%;
-  margin: 0 auto;
-
-  padding: 0px 15px;
-}
-
-.footer__body__link {
-  color: #000;
-}

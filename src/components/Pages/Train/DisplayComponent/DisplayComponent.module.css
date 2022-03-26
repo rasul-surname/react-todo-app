@@ -4,6 +4,7 @@
     align-items: center;
 
     font-size: 3em;
+    color: #6B5FF0;
 
     margin-bottom: 20px;
 }
@@ -20,7 +21,7 @@
 
     margin: 5px;
 
-    background-color: #000;
+    background-color: #6B5FF0;
     border-radius: 8px;
 }
 

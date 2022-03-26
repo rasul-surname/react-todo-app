@@ -1,12 +1,8 @@
 import React from 'react';
 import classes from './BtnComponent.module.css';
-// @ts-ignore
 import start from "../../../../img/play-timer.svg";
-// @ts-ignore
 import stop from "../../../../img/stop-timer.svg";
-// @ts-ignore
 import reset from "../../../../img/reset-timer.svg";
-// @ts-ignore
 import fix from "../../../../img/fix-timer.svg";
 
 interface BtnComponentInterface {
