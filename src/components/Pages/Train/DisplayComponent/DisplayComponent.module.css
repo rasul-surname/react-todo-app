@@ -1,0 +1,44 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 3em;
+
+    margin-bottom: 20px;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 70px;
+    height: 60px;
+
+    color: #fff;
+
+    margin: 5px;
+
+    background-color: #000;
+    border-radius: 8px;
+}
+
+.fixTime__list {
+    height: 300px;
+    overflow: hidden;
+}
+
+.fixTime {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 0px;
+
+    border-bottom: 1px solid #ccc;
+}
+
+.fixTime__desc {
+    display: inline-block;
+}

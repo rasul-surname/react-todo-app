@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+
+    width: 250px;
+}
+
+.img__reset, .img__fix {
+    width: 30px;
+}
