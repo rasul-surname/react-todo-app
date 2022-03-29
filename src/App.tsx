@@ -1,10 +1,8 @@
 import React from 'react';
-import Header from "./components/Header/Header";
-import ActivityChart from "./components/ActivityChart/ActivityChart";
-import FormContainer from "./components/FormContainer/FormContainer";
-import ListTasks from "./components/ListTasks/ListTasks";
-import Footer from "./components/Footer/Footer";
 import {Route, Routes} from "react-router-dom";
+
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Network from "./components/Pages/Network";
 import Programs from "./components/Pages/Programs";
 import Train from "./components/Pages/Train/Train";
@@ -21,7 +19,7 @@ const App: React.FC = () => {
                 <Route path="/network" element={<Network />} />
                 <Route path="/programs" element={<Programs />} />
                 <Route path="/train" element={<Train />} />
-                <Route path="/" element={<Profile />} />
+                <Route path="/react-sport-house" element={<Profile />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </div>

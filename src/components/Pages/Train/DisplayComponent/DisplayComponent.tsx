@@ -1,12 +1,10 @@
 import React from 'react';
+
+import {IDisplayComponent} from "../../../../types/displayComponent";
+
 import classes from './DisplayComponent.module.css';
 
-interface DisplayComponentInterface {
-    time: any;
-    fixTime: any;
-}
-
-const DisplayComponent: React.FC<DisplayComponentInterface> = (props) => {
+const DisplayComponent: React.FC<IDisplayComponent> = (props) => {
 
     return (
         <div>
@@ -18,7 +16,7 @@ const DisplayComponent: React.FC<DisplayComponentInterface> = (props) => {
             <div  className={classes.fixTime__list}>
                 {props.fixTime.list.map((elem: any, index: number) => {
                     return (
-                        <div className={classes.fixTime}>
+                        <div key={index} className={classes.fixTime}>
                             <div className={classes.fixTime__desc}>
                                 <p>Отрезок {index + 1}</p>
                                 <p>Длительность</p>

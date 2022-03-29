@@ -32,7 +32,7 @@ const Header: React.FC = () => {
                     </Link>
                 </div>
                 <div className={classes.header__menu}>
-                    <Link to="/">
+                    <Link to="/react-sport-house">
                         <img src={profile} alt=""/>
                     </Link>
                 </div>

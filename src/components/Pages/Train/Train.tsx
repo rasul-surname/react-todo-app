@@ -1,48 +1,45 @@
 import React, {useState} from 'react';
+
 import DisplayComponent from "./DisplayComponent/DisplayComponent";
 import BtnComponent from "./BtnComponent/BtnComponent";
+
+import {IFixTime, ITime} from "../../../types/train";
+
 import classes from './Train.module.css';
 
-const Train = () => {
-    const [time, setTime] = useState({ms: 0, s: 0, m: 0});
-    const [interv, setInterv] = useState();
-    const [fixTime, setFixTime] = useState({
-        list: [],
-    });
+const Train: React.FC = () => {
+    const [time, setTime] = useState<ITime>({ms: 0, s: 0, m: 0});
+    const [spacing, setSpacing] = useState<any>();
+    const [fixTime, setFixTime] = useState<IFixTime>({list: []});
+    const [status, setStatus] = useState<boolean>(true);
 
-    console.log(fixTime.list.length ? 'yes' : 'no');
-    const [status, setStatus] = useState(true);
-
-    const start = () => {
+    function start() {
         run();
         setStatus(false);
-        // @ts-ignore
-        setInterv(setInterval(run, 10));
+        setSpacing(setInterval(run, 10));
     }
 
-    const stop = () => {
-        clearInterval(interv);
+    function stop() {
+        clearInterval(spacing);
         setStatus(true);
     }
 
-    const reset = () => {
+    function reset() {
         setTime({ms: 0, s: 0, m: 0});
         setFixTime({...fixTime, list:  []});
     }
 
-    const fix = () => {
-        if(fixTime.list.length) {
-            // @ts-ignore
-            setFixTime({...fixTime, list: [...fixTime.list, time]});
-        } else {
-            // @ts-ignore
-            setFixTime({...fixTime, list:  [time]});
-        }
+    function fix() {
+        return (
+            fixTime.list.length ?
+                setFixTime({...fixTime, list: [...fixTime.list, time]}) :
+                setFixTime({...fixTime, list:  [time]})
+        );
     }
 
     let updateMs = time.ms; let updateS = time.s; let updateM = time.m;
 
-    const run = () => {
+    function run() {
         if(updateS === 60) {
             updateM++;
             updateS = 0;
