@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './BtnComponent.module.css';
+import classes from './index.module.css';
 import start from "../../../../img/play-timer.svg";
 import stop from "../../../../img/stop-timer.svg";
 import reset from "../../../../img/reset-timer.svg";

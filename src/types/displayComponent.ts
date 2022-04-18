@@ -1,4 +1,6 @@
 export interface IDisplayComponent {
-    time: any;
+    minute: number;
+    second: number;
+    ms: any;
     fixTime: any;
 }

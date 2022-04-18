@@ -1,14 +1,10 @@
 import React, {useState} from 'react';
+import {IFixTime, ITime} from "../../../../types/train";
+import DisplayComponent from "../DisplayComponent";
+import BtnComponent from "../BtnComponent";
 
-import DisplayComponent from "./DisplayComponent/DisplayComponent";
-import BtnComponent from "./BtnComponent/BtnComponent";
-
-import {IFixTime, ITime} from "../../../types/train";
-
-import classes from './Train.module.css';
-
-const Train: React.FC = () => {
-    const [time, setTime] = useState<ITime>({ms: 0, s: 0, m: 0});
+const Timer = () => {
+    const [time, setTime] = useState<ITime>({ms: 0, s: 0, m: 25});
     const [spacing, setSpacing] = useState<any>();
     const [fixTime, setFixTime] = useState<IFixTime>({list: []});
     const [status, setStatus] = useState<boolean>(true);
@@ -40,24 +36,26 @@ const Train: React.FC = () => {
     let updateMs = time.ms; let updateS = time.s; let updateM = time.m;
 
     function run() {
-        if(updateS === 60) {
-            updateM++;
-            updateS = 0;
+        if(updateS === 0) {
+            updateM--;
+            if(updateS === 0) {
+                updateS = 59;
+            }
         }
-        if(updateMs === 100) {
-            updateS++;
-            updateMs = 0;
+        if(updateMs === 0) {
+            updateMs = 99;
+            updateS--;
         }
-        updateMs++;
-        return setTime({ms: updateMs, s: updateS, m: updateM});
+        updateMs--;
+        return setTime({s: updateS, m: updateM, ms: updateMs});
     }
 
     return (
-        <div className={classes.wrapper}>
-            <DisplayComponent time={time} fixTime={fixTime} />
+        <div>
+            <DisplayComponent minute={time.m} second={time.s} ms={time.ms} fixTime={fixTime} />
             <BtnComponent start={start} stop={stop} reset={reset} fix={fix} status={status} />
         </div>
     );
-}
+};
 
-export default Train;
+export default Timer;
