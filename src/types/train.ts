@@ -3,7 +3,3 @@ export interface ITime {
     s: number;
     m: number;
 }
-
-export interface IFixTime {
-    list: ITime[];
-}

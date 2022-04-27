@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {addTaskList} from "../../store/action_creators/list";
+import {addTaskList} from "../../../../store/action_creators/list";
 import {Button, Form, Input, Modal} from "antd";
 import {PlusCircleTwoTone } from "@ant-design/icons";
 import classes from './FormContainer.module.css';
