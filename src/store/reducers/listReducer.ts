@@ -5,8 +5,8 @@ const initialState: ListState = {
         {id: 1, todo: 'Задача 1', complete: false},
         {id: 2, todo: 'Задача 2', complete: true},
     ],
-    loading: false,
-    error: null,
+    tasksOpen: [],
+    tasksClosed: []
 }
 
 export const listReducer = (state = initialState, action: ListAction): ListState => {
@@ -14,29 +14,27 @@ export const listReducer = (state = initialState, action: ListAction): ListState
         case ListTaskTypes.FETCH_LIST_TASKS:
             return {
                 ...state,
-                loading: true,
+                tasksOpen: [
+                    ...state.listTasks.filter((elem) => {
+                        return elem.complete == false;
+                    })
+                ],
+                tasksClosed: [
+                    ...state.listTasks.filter((elem) => {
+                        return elem.complete == true;
+                    })
+                ]
             }
-        case ListTaskTypes.FETCH_TASKS_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-            }
-        case ListTaskTypes.FETCH_TASKS_ERROR:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload,
-            }
-        case ListTaskTypes.ADD_TASK:
+        case ListTaskTypes.ADD_TASK_LIST:
             return {
                 ...state,
                 listTasks: [
                     ...state.listTasks,
                     {
-                        id: state.listTasks[state.listTasks.length - 1].id + 1,
+                        id: state.listTasks.length ? state.listTasks[state.listTasks.length - 1].id + 1 : 1,
                         todo: action.payload,
                         complete: false,
-                    }],
+                    }]
             }
         case ListTaskTypes.REMOVE_TASK_LIST:
             return {

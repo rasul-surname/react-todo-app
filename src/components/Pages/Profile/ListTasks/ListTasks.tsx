@@ -1,31 +1,29 @@
 import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
-import ListTasksItem from "./ListTasksItem/ListTasksItem";
-import {Spin} from "antd";
-import classes from './ListTasks.module.css';
+
 import {useTypedSelector} from "../../../../hooks/useTypedSelector";
+
+import ListTasksItem from "./ListTasksItem/ListTasksItem";
 import {
     changeCompleteTask,
     fetchListTasks,
-    fetchTasksSuccess,
     removeTaskList
 } from "../../../../store/action_creators/list";
 
-const ListTasks: React.FC = () => {
-    const {listTasks, loading, error} = useTypedSelector(state => state.listReducer);
+interface InterfaceListTasks {
+    list: any[],
+}
+
+const ListTasks: React.FC<InterfaceListTasks> = ({list}) => {
+    const {listTasks} = useTypedSelector(state => state.listReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchTasksSuccess());
-
-        // искусственная задержка для имитации работы сервера
-        setTimeout(() => {
-            dispatch(fetchListTasks());
-        }, 1000)
+        dispatch(fetchListTasks());
     }, [listTasks]);
 
     function removeTask(id: number) {
-        dispatch(removeTaskList(id))
+        dispatch(removeTaskList(id));
     }
 
     function onChange(id: number, checked: boolean, ) {
@@ -33,19 +31,14 @@ const ListTasks: React.FC = () => {
     }
 
     return (
-        <>
-            {loading ? (
-                <ul>
-                    {
-                        listTasks.map((elem) => (
-                            <ListTasksItem id={elem.id} todo={elem.todo} complete={elem.complete} onChange={onChange} removeTask={removeTask} />
-                        ))
-                    }
-                </ul>
-            ) : <Spin className={classes.spin} size="large" />}
-            {error ? <h1>{error}</h1> : ''}
-        </>
-    );
+        <ul>
+            {
+                list.map((elem) => (
+                    <ListTasksItem id={elem.id} todo={elem.todo} complete={elem.complete} onChange={onChange} removeTask={removeTask} />
+                ))
+            }
+        </ul>
+    )
 }
 
 export default ListTasks;
