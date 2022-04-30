@@ -9,6 +9,8 @@ export enum ListTaskTypes {
     FETCH_TASKS_ERROR = "FETCH_TASKS_ERROR",
     ADD_TASK = "ADD_TASK",
     REMOVE_TASK_LIST = "REMOVE_TASK_LIST",
+    CHANGE_COMPLETE_TASK = "CHANGE_COMPLETE_TASK",
+
 }
 interface FETCH_LIST_TASKS {
     type: ListTaskTypes.FETCH_LIST_TASKS;
@@ -28,5 +30,12 @@ interface REMOVE_TASK_LIST {
     type: ListTaskTypes.REMOVE_TASK_LIST;
     payload: number;
 }
+interface CHANGE_COMPLETE_TASK {
+    type: ListTaskTypes.CHANGE_COMPLETE_TASK;
+    payload: {
+        id: number,
+        checked: boolean,
+    };
+}
 
-export type ListAction = FETCH_LIST_TASKS | FETCH_TASKS_SUCCESS | FETCH_TASKS_ERROR | ADD_TASK | REMOVE_TASK_LIST;
+export type ListAction = FETCH_LIST_TASKS | FETCH_TASKS_SUCCESS | FETCH_TASKS_ERROR | ADD_TASK | REMOVE_TASK_LIST | CHANGE_COMPLETE_TASK;
