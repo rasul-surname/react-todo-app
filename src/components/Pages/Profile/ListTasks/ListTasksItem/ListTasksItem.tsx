@@ -4,19 +4,21 @@ import { DeleteTwoTone } from "@ant-design/icons";
 import classes from './ListTasksItem.module.css';
 
 interface ListTasksItemInterface {
+    id: number,
     todo: string,
+    removeTask: (id: number) => void,
 }
 
-const ListTasksItem: React.FC<ListTasksItemInterface> = ({todo}) => {
+const ListTasksItem: React.FC<ListTasksItemInterface> = ({id, todo, removeTask}) => {
 
     return (
-        <div className={classes.list_item}>
+        <li key={id} className={classes.list_item}>
             <div style={{display: 'flex', alignItems: 'center'}}>
                 <Checkbox></Checkbox>
                 <p  className={classes.list_item_title}>{todo}</p>
             </div>
-            <DeleteTwoTone className={classes.list_item_delete} />
-        </div>
+            <DeleteTwoTone onClick={() => removeTask(id)} className={classes.list_item_delete} />
+        </li>
     );
 }
 

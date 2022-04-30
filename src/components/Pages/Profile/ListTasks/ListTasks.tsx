@@ -4,7 +4,7 @@ import ListTasksItem from "./ListTasksItem/ListTasksItem";
 import {Spin} from "antd";
 import classes from './ListTasks.module.css';
 import {useTypedSelector} from "../../../../hooks/useTypedSelector";
-import {fetchListTasks, fetchTasksSuccess} from "../../../../store/action_creators/list";
+import {fetchListTasks, fetchTasksSuccess, removeTaskList} from "../../../../store/action_creators/list";
 
 const ListTasks: React.FC = () => {
     const {listTasks, loading, error} = useTypedSelector(state => state.listReducer);
@@ -19,12 +19,20 @@ const ListTasks: React.FC = () => {
         }, 1000)
     }, [listTasks]);
 
+    function removeTask(id: number) {
+        dispatch(removeTaskList(id))
+    }
+
     return (
         <>
             {loading ? (
-                listTasks.map((elem) => (
-                    <ListTasksItem todo={elem.todo} />
-                    ))
+                <ul>
+                    {
+                        listTasks.map((elem) => (
+                            <ListTasksItem id={elem.id} todo={elem.todo} removeTask={removeTask} />
+                        ))
+                    }
+                </ul>
             ) : <Spin className={classes.spin} size="large" />}
             {error ? <h1>{error}</h1> : ''}
         </>

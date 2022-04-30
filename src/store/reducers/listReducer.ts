@@ -2,8 +2,8 @@ import {ListAction, ListState, ListTaskTypes} from "../../types/list";
 
 const initialState: ListState = {
     listTasks: [
-        {todo: 'Задача 1'},
-        {todo: 'Задача 2'},
+        {id: 1, todo: 'Задача 1'},
+        {id: 2, todo: 'Задача 2'},
     ],
     loading: false,
     error: null,
@@ -30,7 +30,19 @@ export const listReducer = (state = initialState, action: ListAction): ListState
         case ListTaskTypes.ADD_TASK:
             return {
                 ...state,
-                listTasks: [...state.listTasks, {todo: action.payload}],
+                listTasks: [
+                    ...state.listTasks,
+                    {
+                        id: state.listTasks[state.listTasks.length - 1].id + 1,
+                        todo: action.payload
+                    }],
+            }
+        case ListTaskTypes.REMOVE_TASK_LIST:
+            return {
+                ...state,
+                listTasks: [
+                    ...state.listTasks.filter(elem => elem.id !== action.payload)
+                ]
             }
         default:
             return state;
