@@ -4,6 +4,8 @@ const initialState: ListState = {
     listTasks: [
         {id: 1, todo: 'Задача 1', complete: false},
         {id: 2, todo: 'Задача 2', complete: true},
+        {id: 3, todo: 'Задача 3', complete: false},
+        {id: 4, todo: 'Задача 4', complete: false},
     ],
     tasksOpen: [],
     tasksClosed: []

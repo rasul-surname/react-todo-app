@@ -3,8 +3,12 @@ import React, {useState} from 'react';
 import {ITime} from "../../../types/train";
 import DisplayComponent from "./DisplayComponent";
 import BtnComponent from "./BtnComponent";
+import ListTasks from "../Profile/ListTasks/ListTasks";
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import CardsTasks from "./CardsTasks/CardsTasks";
 
 const Train: React.FC = () => {
+    const {tasksOpen} = useTypedSelector(state => state.listReducer);
     const [time, setTime] = useState<ITime>({ms: 0, s: 0, m: 25});
     const [spacing, setSpacing] = useState<any>();
     const [status, setStatus] = useState<boolean>(true);
@@ -43,8 +47,9 @@ const Train: React.FC = () => {
 
     return (
         <div>
-            <DisplayComponent minute={time.m} second={time.s} ms={time.ms} />
-            <BtnComponent start={start} stop={stop} reset={reset} status={status} />
+            {/*<DisplayComponent minute={time.m} second={time.s} ms={time.ms} />*/}
+            {/*<BtnComponent start={start} stop={stop} reset={reset} status={status} />*/}
+            <CardsTasks list={tasksOpen} />
         </div>
     );
 }
