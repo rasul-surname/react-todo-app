@@ -2,10 +2,10 @@ import {ListAction, ListState, ListTaskTypes} from "../../types/list";
 
 const initialState: ListState = {
     listTasks: [
-        {id: 1, todo: 'Задача 1', complete: false, time: '25:00'},
-        {id: 2, todo: 'Задача 2', complete: true, time: '25:00'},
-        {id: 3, todo: 'Задача 3', complete: false, time: '25:00'},
-        {id: 4, todo: 'Задача 4', complete: false, time: '25:00'},
+        {id: 1, todo: 'Задача 1', complete: false, minutes: '25'},
+        {id: 2, todo: 'Задача 2', complete: true, minutes: '25'},
+        {id: 3, todo: 'Задача 3', complete: false, minutes: '25'},
+        {id: 4, todo: 'Задача 4', complete: false, minutes: '25'},
     ],
     tasksOpen: [],
     tasksClosed: []

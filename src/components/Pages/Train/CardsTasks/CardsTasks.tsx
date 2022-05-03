@@ -5,13 +5,14 @@ import classes from './CardsTasks.module.css';
 interface InterfaceCardsTasks {
     list: any[];
     onClick: (elem: any) => void;
+    activeTab: number;
 }
 
-const CardsTasks: React.FC<InterfaceCardsTasks> = ({list, onClick}) => {
+const CardsTasks: React.FC<InterfaceCardsTasks> = ({list, onClick, activeTab}) => {
 
     return (
         <div className={classes.row}>
-            {list.map(elem => (<Card title={elem.todo} onClick={() => onClick(elem)} />))}
+            {list.map(elem => (<Card id={elem.id} title={elem.todo} onClick={() => onClick(elem)} activeTab={activeTab} />))}
         </div>
     );
 }

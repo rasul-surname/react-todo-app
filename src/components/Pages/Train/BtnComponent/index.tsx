@@ -1,8 +1,6 @@
 import React from 'react';
 import classes from './index.module.css';
-import start from "../../../../img/play-timer.svg";
-import stop from "../../../../img/stop-timer.svg";
-import reset from "../../../../img/reset-timer.svg";
+import ButtonComponent from "../../../ButtonComponent/ButtonComponent";
 
 interface BtnComponentInterface {
     start: () => any;
@@ -16,17 +14,11 @@ const BtnComponent: React.FC<BtnComponentInterface> = (props) => {
     return (
         <div className={classes.wrapper}>
             <div className={classes.content}>
-                <img
-                    className={classes.img__reset}
-                    onClick={props.status ? props.reset : evt => {}}
-                    style={props.status ? {} : {opacity: 0.3}}
-                    src={reset}
-                    alt="сбросить"
-                />
+                <ButtonComponent value={'Сбросить'} size={'large'} onClick={props.reset} />
                 {
                     (props.status)?
-                        <img className={classes.img__start} onClick={props.start} src={start} alt="старт"/> :
-                        <img className={classes.img__stop} onClick={props.stop} src={stop} alt="стоп" />
+                        <ButtonComponent value={'Начать'} size={'large'} onClick={props.start} />:
+                        <ButtonComponent value={'Стоп'} size={'large'} onClick={props.stop} />
                 }
             </div>
         </div>

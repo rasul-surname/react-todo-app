@@ -1,5 +1,6 @@
 .row {
     display: flex;
+    align-items: center;
     overflow: auto;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 }

@@ -6,6 +6,7 @@ import {ITime} from "../../../types/train";
 import DisplayComponent from "./DisplayComponent";
 import BtnComponent from "./BtnComponent";
 import CardsTasks from "./CardsTasks/CardsTasks";
+import SplashScreen from "./SplashScreen/SplashScreen";
 
 const Train: React.FC = () => {
     const {tasksOpen} = useTypedSelector(state => state.listReducer);
@@ -13,11 +14,12 @@ const Train: React.FC = () => {
     const [spacing, setSpacing] = useState<any>();
     const [status, setStatus] = useState<boolean>(true);
 
-    function connectTime(elem: any) {
-        const arr = elem.time.split(':');
-        const minutes = arr[0];
+    const [activeTab, setActiveTab] = useState(-1);
+    const [visible, setVisible] = useState(false);
 
-        setTime({s: 0, m: minutes});
+    function connectTime(elem: any) {
+        setActiveTab(elem.id);
+        setTime({s: 0, m: elem.minutes});
     }
 
     function start() {
@@ -50,9 +52,18 @@ const Train: React.FC = () => {
 
     return (
         <div>
-            <DisplayComponent minute={time.m} second={time.s} />
-            <BtnComponent start={start} stop={stop} reset={reset} status={status} />
-            <CardsTasks list={tasksOpen} onClick={connectTime} />
+            {visible ?
+                <>
+                    <DisplayComponent minute={time.m} second={time.s} />
+                    <BtnComponent start={start} stop={stop} reset={reset} status={status} />
+                </>
+                :
+                <>
+                    <SplashScreen onClick={() => setVisible(!visible)} />
+                    <CardsTasks list={tasksOpen} onClick={connectTime} activeTab={activeTab} />
+                </>
+            }
+
         </div>
     );
 }

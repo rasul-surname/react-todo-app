@@ -13,3 +13,8 @@
     border: 1px solid #6B5FF0;
     border-radius: 8px;
 }
+
+.active {
+    width: 110px;
+    height: 130px;
+}
