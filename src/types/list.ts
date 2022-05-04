@@ -3,13 +3,14 @@ export interface ListState {
     tasksOpen: any[];
     tasksClosed: any[];
 }
+
 export enum ListTaskTypes {
     FETCH_LIST_TASKS = "FETCH_LIST_TASKS",
     ADD_TASK_LIST = "ADD_TASK_LIST",
     REMOVE_TASK_LIST = "REMOVE_TASK_LIST",
-    CHANGE_COMPLETE_TASK = "CHANGE_COMPLETE_TASK",
-
+    CHANGE_COMPLETE_TASK = "CHANGE_COMPLETE_TASK"
 }
+
 interface FETCH_LIST_TASKS {
     type: ListTaskTypes.FETCH_LIST_TASKS;
 }

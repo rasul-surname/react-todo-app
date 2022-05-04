@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from './Card.module.css';
 
 interface InterfaceCard {
     id: number;
     title: string;
     onClick: () => void;
-    activeTab: number;
+    activeTask: number;
 }
 
-const Card: React.FC<InterfaceCard> = ({id, title, onClick, activeTab}) => {
-    const active = id === activeTab;
+const Card: React.FC<InterfaceCard> = (props) => {
+    const {id, title, onClick, activeTask} = props;
+    const active = id === activeTask;
 
     return (
         <div className={active ? classes.box + ' ' + classes.active : classes.box} onClick={() => onClick()} >

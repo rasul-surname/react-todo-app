@@ -3,22 +3,24 @@ import classes from './index.module.css';
 import ButtonComponent from "../../../ButtonComponent/ButtonComponent";
 
 interface BtnComponentInterface {
-    start: () => any;
-    stop: () => any;
-    reset: () => any;
-    status: boolean;
+    start: () => void;
+    stop: () => void;
+    reset: () => void;
+    visibleBtn: boolean;
 }
 
 const BtnComponent: React.FC<BtnComponentInterface> = (props) => {
+    const {start, stop, reset, visibleBtn} = props;
 
     return (
         <div className={classes.wrapper}>
             <div className={classes.content}>
-                <ButtonComponent value={'Сбросить'} size={'large'} onClick={props.reset} />
+                <ButtonComponent value={'Сбросить'} size={'large'} onClick={reset} />
                 {
-                    (props.status)?
-                        <ButtonComponent value={'Начать'} size={'large'} onClick={props.start} />:
-                        <ButtonComponent value={'Стоп'} size={'large'} onClick={props.stop} />
+                    visibleBtn ?
+                        <ButtonComponent value={'Начать'} size={'large'} onClick={start} />
+                        :
+                        <ButtonComponent value={'Стоп'} size={'large'} onClick={stop} />
                 }
             </div>
         </div>

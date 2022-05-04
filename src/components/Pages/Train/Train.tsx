@@ -1,69 +1,63 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
-
-import {ITime} from "../../../types/train";
+import {useDispatch} from "react-redux";
 
 import DisplayComponent from "./DisplayComponent";
 import BtnComponent from "./BtnComponent";
 import CardsTasks from "./CardsTasks/CardsTasks";
 import SplashScreen from "./SplashScreen/SplashScreen";
+import {
+    changeTime,
+    nextStepTime,
+    resetTime
+} from "../../../store/action_creators/list";
 
 const Train: React.FC = () => {
     const {tasksOpen} = useTypedSelector(state => state.listReducer);
-    const [time, setTime] = useState<ITime>({s: 0, m: 20});
-    const [spacing, setSpacing] = useState<any>();
-    const [status, setStatus] = useState<boolean>(true);
+    const dispatch = useDispatch();
 
-    const [activeTab, setActiveTab] = useState(-1);
-    const [visible, setVisible] = useState(false);
+    const [timerId, setTimerId] = useState<any>();
+    const [visibleBtn, setVisibleBtn] = useState<boolean>(true);
+    const [activeTask, setActiveTask] = useState(-1);
+    const [visibleTimer, setVisibleTimer] = useState(false);
 
     function connectTime(elem: any) {
-        setActiveTab(elem.id);
-        setTime({s: 0, m: elem.minutes});
+        setActiveTask(elem.id);
+        dispatch(changeTime(elem.minutes));
     }
 
     function start() {
         run();
-        setStatus(false);
-        setSpacing(setInterval(run, 1000));
+        setVisibleBtn(false);
+        setTimerId(setInterval(run, 1000));
     }
 
     function stop() {
-        clearInterval(spacing);
-        setStatus(true);
+        clearInterval(timerId);
+        setVisibleBtn(true);
     }
 
     function reset() {
-        setTime({s: 0, m: 0});
+        dispatch(resetTime());
     }
 
-    let updateS = time.s; let updateM = time.m;
-
     function run() {
-        if(updateS === 0) {
-            updateM--;
-            if(updateS === 0) {
-                updateS = 60;
-            }
-        }
-        updateS--;
-        return setTime({s: updateS, m: updateM});
+        dispatch(nextStepTime());
     }
 
     return (
         <div>
-            {visible ?
+            {visibleTimer ?
                 <>
-                    <DisplayComponent minute={time.m} second={time.s} />
-                    <BtnComponent start={start} stop={stop} reset={reset} status={status} />
+                    <DisplayComponent />
+                    <BtnComponent start={start} stop={stop} reset={reset} visibleBtn={visibleBtn} />
                 </>
                 :
                 <>
-                    <SplashScreen onClick={() => setVisible(!visible)} />
-                    <CardsTasks list={tasksOpen} onClick={connectTime} activeTab={activeTab} />
+                    <SplashScreen onClick={() => setVisibleTimer(!visibleTimer)} />
+                    <CardsTasks list={tasksOpen} onClick={connectTime} activeTask={activeTask} />
                 </>
             }
-
         </div>
     );
 }
