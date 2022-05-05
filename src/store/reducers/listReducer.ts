@@ -2,13 +2,17 @@ import {ListAction, ListState, ListTaskTypes} from "../../types/list";
 
 const initialState: ListState = {
     listTasks: [
-        {id: 1, todo: 'Задача 1', complete: false, minutes: '1'},
-        {id: 2, todo: 'Задача 2', complete: true, minutes: '2'},
-        {id: 3, todo: 'Задача 3', complete: false, minutes: '3'},
-        {id: 4, todo: 'Задача 4', complete: false, minutes: '4'},
+        {id: 1, todo: 'Задача 1', complete: false, minutes: '25'},
+        {id: 2, todo: 'Задача 2', complete: true, minutes: '25'},
+        {id: 3, todo: 'Задача 3', complete: false, minutes: '25'},
+        {id: 4, todo: 'Задача 4', complete: false, minutes: '25'},
     ],
     tasksOpen: [],
-    tasksClosed: []
+    tasksClosed: [],
+    requiredHours: 0,
+    requiredMinutes: 0,
+    spendHours: 0,
+    spendMinutes: 0,
 }
 
 export const listReducer = (state = initialState, action: ListAction): ListState => {
@@ -57,6 +61,24 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                         return elem;
                     })
                 ]
+            }
+        case ListTaskTypes.GET_REQUIRED_TIME:
+            const requiredMin = state.listTasks.reduce((acc, elem) => {
+                return acc += +elem.minutes;
+            }, 0);
+            return {
+                ...state,
+                requiredHours: Math.trunc(requiredMin/60),
+                requiredMinutes: requiredMin % 60
+            }
+        case ListTaskTypes.GET_SPEND_TIME:
+            const spendMin = state.tasksClosed.reduce((acc, elem) => {
+                return acc += +elem.minutes;
+            }, 0);
+            return {
+                ...state,
+                spendHours: Math.trunc(spendMin/60),
+                spendMinutes: spendMin % 60
             }
         default:
             return state;

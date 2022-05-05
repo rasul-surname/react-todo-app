@@ -1,0 +1,22 @@
+.container {
+    border: 1px solid #D7D7D7;
+    border-radius: 8px;
+}
+
+.btnVisible {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.title {
+    font-size: 18px;
+    color: #060606;
+}
+
+.container__box {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
