@@ -1,0 +1,41 @@
+.container__box {
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    text-align: center;
+
+    background: #FFFFFF;
+    border: 1px solid #ccc;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+    padding: 10px 5px;
+}
+
+.container__boxNoteTitle {
+    display: flex;
+    justify-content: space-around;
+
+    font-size: 10px;
+    color: #878787;
+
+    margin-bottom: 10px;
+}
+
+.container__boxTitle {
+    color: #6B5FF0;
+    font-size: 22px;
+    line-height: 15px;
+
+    margin-bottom: 10px;
+}
+
+.container__boxDesc {
+    color: #878787;
+    font-size: 14px;
+    line-height: 15px;
+}

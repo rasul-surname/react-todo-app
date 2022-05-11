@@ -40,7 +40,7 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                         id: state.listTasks.length ? state.listTasks[state.listTasks.length - 1].id + 1 : 1,
                         todo: action.payload,
                         complete: false,
-                        time: '25:00',
+                        minutes: '25',
                     }]
             }
         case ListTaskTypes.REMOVE_TASK_LIST:
