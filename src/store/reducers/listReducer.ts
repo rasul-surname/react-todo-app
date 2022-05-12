@@ -38,7 +38,7 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                     ...state.listTasks,
                     {
                         id: state.listTasks.length ? state.listTasks[state.listTasks.length - 1].id + 1 : 1,
-                        todo: action.payload,
+                        todo: action.payload.value,
                         complete: false,
                         minutes: '25',
                     }]

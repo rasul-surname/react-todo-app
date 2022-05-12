@@ -22,7 +22,7 @@ interface FETCH_LIST_TASKS {
 }
 interface ADD_TASK_LIST {
     type: ListTaskTypes.ADD_TASK_LIST;
-    payload: string;
+    payload: {value: string, pomodoro: number};
 }
 interface REMOVE_TASK_LIST {
     type: ListTaskTypes.REMOVE_TASK_LIST;

@@ -1,0 +1,11 @@
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.title {
+	text-align: center;
+	font-size: 16px;
+
+	margin: 10px 0px 5px;
+}
