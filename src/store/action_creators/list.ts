@@ -11,5 +11,4 @@ export const getSpendTime = () => ({type: ListTaskTypes.GET_SPEND_TIME});
 
 // TimeReducer
 export const nextStepTime = () => ({type: TimerTypes.NEXT_STEP_TIME});
-export const resetTime = () => ({type: TimerTypes.RESET_TIME});
 export const changeTime = (minutes: number) => ({type: TimerTypes.CHANGE_TIME, payload: minutes});

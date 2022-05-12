@@ -12,12 +12,10 @@ export const timeReducer = (state = initialState, action: TimeAction) => {
             } else {
                 return {...state, time: {seconds: state.time.seconds - 1, minutes: state.time.minutes}}
             }
-        case TimerTypes.RESET_TIME:
-            return {...state, time: {seconds: 0, minutes: 0}}
         case TimerTypes.CHANGE_TIME:
             return {
                 ...state,
-                time: {seconds: state.time.seconds, minutes: action.payload}
+                time: {seconds: 0, minutes: action.payload}
             }
         default:
             return state;

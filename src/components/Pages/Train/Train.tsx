@@ -6,7 +6,7 @@ import DisplayComponent from "./DisplayComponent";
 import BtnComponent from "./BtnComponent";
 import CardsTasks from "./CardsTasks/CardsTasks";
 import SplashScreen from "./SplashScreen/SplashScreen";
-import {changeTime, nextStepTime, resetTime} from "../../../store/action_creators/list";
+import {changeTime, nextStepTime} from "../../../store/action_creators/list";
 
 const Train: React.FC = () => {
     const {tasksOpen} = useTypedSelector(state => state.listReducer);
@@ -39,10 +39,6 @@ const Train: React.FC = () => {
         setVisibleBtn(true);
     }
 
-    function reset() {
-        dispatch(resetTime());
-    }
-
     function run() {
         dispatch(nextStepTime());
     }
@@ -52,7 +48,7 @@ const Train: React.FC = () => {
             {visibleTimer ?
                 <>
                     <DisplayComponent />
-                    <BtnComponent start={start} stop={stop} reset={reset} visibleBtn={visibleBtn} />
+                    <BtnComponent start={start} stop={stop} visibleBtn={visibleBtn} />
                 </>
                 :
                 <>
