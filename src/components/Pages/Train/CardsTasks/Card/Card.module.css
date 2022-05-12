@@ -1,6 +1,7 @@
 .box {
     display: flex;
-    justify-content: center;
+	flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     color: white;
 
@@ -8,13 +9,31 @@
     height: 120px;
 
     flex-shrink: 0;
+	padding: 10px 0px;
     margin-right: 20px;
     background: #6B5FF0;
     border: 1px solid #6B5FF0;
     border-radius: 8px;
 }
 
-.active {
-    width: 110px;
-    height: 130px;
+.box.active {
+    width: 120px;
+    height: 140px;
+}
+
+.boxTime {
+	width: 60px;
+	height: 60px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: #9189F7;
+	border-radius: 50%;
+}
+
+.boxTime.active {
+	width: 70px;
+	height: 70px;
 }
