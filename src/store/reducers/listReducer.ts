@@ -2,10 +2,10 @@ import {ListAction, ListState, ListTaskTypes} from "../../types/list";
 
 const initialState: ListState = {
     listTasks: [
-        {id: 1, todo: 'Задача 1', complete: false, minutes: '25'},
-        {id: 2, todo: 'Задача 2', complete: true, minutes: '25'},
-        {id: 3, todo: 'Задача 3', complete: false, minutes: '25'},
-        {id: 4, todo: 'Задача 4', complete: false, minutes: '25'},
+        {id: 1, todo: 'Задача 1', complete: false, minutes: '30', pomodoro: 1},
+        {id: 2, todo: 'Задача 2', complete: true, minutes: '60', pomodoro: 2},
+        {id: 3, todo: 'Задача 3', complete: false, minutes: '30', pomodoro: 1},
+        {id: 4, todo: 'Задача 4', complete: false, minutes: '60', pomodoro: 2},
     ],
     tasksOpen: [],
     tasksClosed: [],
@@ -41,6 +41,7 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                         todo: action.payload.value,
                         complete: false,
                         minutes: '25',
+						pomodoro: action.payload.pomodoro,
                     }]
             }
         case ListTaskTypes.REMOVE_TASK_LIST:
