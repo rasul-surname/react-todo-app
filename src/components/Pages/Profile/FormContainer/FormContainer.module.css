@@ -1,6 +1,11 @@
 .input {
     height: 40px;
 }
+.input.active {
+	border: 1px solid #E64646;
+	background: #FAEBEB;
+}
+
 .button {
     width: 100%;
     text-align: left;
@@ -9,4 +14,10 @@
 }
 .button span:first-child {
     margin-right: 20px;
+}
+
+.warning {
+	margin-top: 5px;
+	font-size: 12px;
+	color: #E64646;
 }

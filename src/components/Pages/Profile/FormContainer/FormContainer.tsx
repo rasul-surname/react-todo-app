@@ -3,17 +3,24 @@ import {useDispatch} from "react-redux";
 import {addTaskList} from "../../../../store/action_creators/list";
 import {Button, Form, Input, Modal} from "antd";
 import {PlusCircleTwoTone } from "@ant-design/icons";
-import classes from './FormContainer.module.css';
 import TimeList from "./TimeList/TimeList";
+import clsx from 'clsx'
+import classes from './FormContainer.module.css';
 
 const FormContainer: React.FC = () => {
 	const dispatch = useDispatch();
     const [value, setValue] = useState('');
     const [visible, setVisible] = React.useState(false);
+	const [disabled, setDisable] = useState(false);
     const [confirmLoading, setConfirmLoading] = React.useState(false);
 	const [pomodoro, setPomodoro] = useState<number>(1);
+	const minLengthInput = 3;
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if(event.target.value.trim().length >= minLengthInput) {
+			setDisable(false);
+		}
+
         setValue(event.target.value);
     }
 
@@ -28,18 +35,24 @@ const FormContainer: React.FC = () => {
     };
 
     const handleOk = () => {
-        setConfirmLoading(true);
+		if(value.trim().length < minLengthInput) {
+			setDisable(true);
+		} else {
+			setDisable(false);
+			setConfirmLoading(true);
 
-        dispatch(addTaskList(value, pomodoro));
-        setValue('');
-
-        setTimeout(() => {
-            setVisible(false);
-            setConfirmLoading(false);
-        }, 800);
+			dispatch(addTaskList(value, pomodoro));
+			setValue('');
+	
+			setTimeout(() => {
+				setVisible(false);
+				setConfirmLoading(false);
+			}, 800);
+		}
     };
 
     const handleCancel = () => {
+		setDisable(false);
         setVisible(false);
     };
 
@@ -54,14 +67,21 @@ const FormContainer: React.FC = () => {
                 onOk={handleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
-            >
+            >	
                 <Input
                     value={value}
                     onChange={changeHandler}
                     onKeyPress={keyPressHandler}
-                    placeholder="Введите задачу"
-                    className={classes.input}
+                    placeholder={"Введите задачу"}
+                    className={clsx(classes.input, disabled && classes.active)}
                 />
+				{disabled ? 
+					<p className={clsx({[classes.warning]: disabled})}>
+						Обязательное поле должно содержать не менее 3 символов
+					</p>
+					:
+					''
+				}
 				<TimeList setPomodoro={setPomodoro} />
             </Modal>
         </Form>
