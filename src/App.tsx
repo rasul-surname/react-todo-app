@@ -2,7 +2,6 @@ import React from 'react';
 import {Route, Routes} from "react-router-dom";
 
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import Network from "./components/Pages/Network/Network";
 import Programs from "./components/Pages/Programs/Programs";
 import Train from "./components/Pages/Train/Train";
@@ -23,7 +22,6 @@ const App: React.FC = () => {
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </div>
-        <Footer />
     </div>
   );
 }
