@@ -1,20 +1,29 @@
+import {useState} from 'react';
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import { Button, Modal, Row } from 'antd';
-import { useState } from 'react';
 import EventCalendar from './EventCalendar/EventCalendar';
 import EventForm from './EventForm/EventForm';
+import classes from './Programs.module.css';
+import clsx from "clsx";
 
 const Programs = () => {
+	const {listTasks} = useTypedSelector(state => state.listReducer);
+
 	const [modalVisible, setVisible] = useState(false);
 
+	function addNewTask() {
+		setVisible(false);
+	}
+
     return (
-        <div>
+        <div className={clsx(classes.content, classes.wrapper)}>
 			<Modal
 				title="Добавить задачу"
 				visible={modalVisible}
 				onCancel={() => setVisible(false)}
 				footer={null}
 			>
-				<EventForm />
+				<EventForm submit={addNewTask} />
 			</Modal>
 			<Row justify="center">
 				<Button
@@ -23,7 +32,7 @@ const Programs = () => {
 					Добавить задачу
 				</Button>
 			</Row>
-            <EventCalendar events={[]} />
+            <EventCalendar events={listTasks} />
         </div>
     );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
+import classes from './Network.module.css';
 
 const Network = () => {
 
     return (
-        <div>
+        <div className={classes.content}>
             Network
         </div>
     );

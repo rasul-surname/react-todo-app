@@ -1,5 +1,5 @@
 export interface ListState {
-    listTasks: {id: number, todo: string, complete: boolean, minutes: string, pomodoro: number}[];
+    listTasks: {id: number, todo: string, complete: boolean, minutes: string, pomodoro: number, date: any}[];
     tasksOpen: any[];
     tasksClosed: any[];
     requiredHours: number;
@@ -19,10 +19,11 @@ export enum ListTaskTypes {
 
 interface FETCH_LIST_TASKS {
     type: ListTaskTypes.FETCH_LIST_TASKS;
+    payload: any;
 }
 interface ADD_TASK_LIST {
     type: ListTaskTypes.ADD_TASK_LIST;
-    payload: {value: string, pomodoro: number};
+    payload: {value: string, pomodoro: number, date?: string};
 }
 interface REMOVE_TASK_LIST {
     type: ListTaskTypes.REMOVE_TASK_LIST;

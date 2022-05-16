@@ -13,15 +13,13 @@ const App: React.FC = () => {
     return (
     <div className='wrapper'>
         <Header />
-        <div className='content'>
-            <Routes>
-                <Route path="/network" element={<Network />} />
-                <Route path="/programs" element={<Programs />} />
-                <Route path="/train" element={<Train />} />
-                <Route path="/react-sport-house" element={<Profile />} />
-                <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-        </div>
+        <Routes>
+            <Route path="/network" element={<Network />} />
+            <Route path="/programs" element={<Programs />} />
+            <Route path="/train" element={<Train />} />
+            <Route path="/react-sport-house" element={<Profile />} />
+            <Route path="*" element={<NotFoundPage />} />
+        </Routes>
     </div>
   );
 }

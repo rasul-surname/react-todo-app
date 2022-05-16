@@ -1,11 +1,19 @@
 import {ListAction, ListState, ListTaskTypes} from "../../types/list";
+import moment from "moment";
+
+const day1 = moment();
+const day2 = moment().add(1, 'days');
+const day3 = moment().add(2, 'days');
+
+const today = day1.format('YYYY.MM.DD');
+const tomorrow = day2.format('YYYY.MM.DD');
+const nextTomorrow = day3.format('YYYY.MM.DD');
 
 const initialState: ListState = {
     listTasks: [
-        {id: 1, todo: 'Задача 1', complete: false, minutes: '30', pomodoro: 1},
-        {id: 2, todo: 'Задача 2', complete: true, minutes: '60', pomodoro: 2},
-        {id: 3, todo: 'Задача 3', complete: false, minutes: '30', pomodoro: 1},
-        {id: 4, todo: 'Задача 4', complete: false, minutes: '60', pomodoro: 2},
+        {id: 1, todo: 'Задача 1', complete: false, minutes: '30', pomodoro: 1, date: today},
+        {id: 2, todo: 'Задача 3', complete: false, minutes: '30', pomodoro: 1, date: tomorrow},
+        {id: 3, todo: 'Задача 4', complete: false, minutes: '30', pomodoro: 2, date: nextTomorrow},
     ],
     tasksOpen: [],
     tasksClosed: [],
@@ -22,12 +30,16 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                 ...state,
                 tasksOpen: [
                     ...state.listTasks.filter((elem) => {
-                        return elem.complete == false;
+                        if(elem.complete == false && elem.date === today) {
+                            return true;
+                        }
                     })
                 ],
                 tasksClosed: [
                     ...state.listTasks.filter((elem) => {
-                        return elem.complete == true;
+                        if(elem.complete == true && elem.date === today) {
+                            return true;
+                        }
                     })
                 ]
             }
@@ -40,8 +52,9 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                         id: state.listTasks.length ? state.listTasks[state.listTasks.length - 1].id + 1 : 1,
                         todo: action.payload.value,
                         complete: false,
-                        minutes: '25',
+                        minutes: String(action.payload.pomodoro * 30),
 						pomodoro: action.payload.pomodoro,
+                        date: action.payload.date || today,
                     }]
             }
         case ListTaskTypes.REMOVE_TASK_LIST:
@@ -65,7 +78,10 @@ export const listReducer = (state = initialState, action: ListAction): ListState
             }
         case ListTaskTypes.GET_REQUIRED_TIME:
             const requiredMin = state.listTasks.reduce((acc, elem) => {
-                return acc += +elem.minutes;
+                if(elem.date === today) {
+                    return acc += +elem.minutes;
+                }
+                return acc;
             }, 0);
             return {
                 ...state,
@@ -74,7 +90,10 @@ export const listReducer = (state = initialState, action: ListAction): ListState
             }
         case ListTaskTypes.GET_SPEND_TIME:
             const spendMin = state.tasksClosed.reduce((acc, elem) => {
-                return acc += +elem.minutes;
+                if(elem.date === today) {
+                    return acc += +elem.minutes;
+                }
+                return acc;
             }, 0);
             return {
                 ...state,

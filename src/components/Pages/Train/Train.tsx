@@ -7,6 +7,7 @@ import BtnComponent from "./BtnComponent";
 import CardsTasks from "./CardsTasks/CardsTasks";
 import SplashScreen from "./SplashScreen/SplashScreen";
 import {changeTime, nextStepTime} from "../../../store/action_creators/list";
+import classes from "./Train.module.css";
 
 const Train: React.FC = () => {
     const {tasksOpen} = useTypedSelector(state => state.listReducer);
@@ -44,7 +45,7 @@ const Train: React.FC = () => {
     }
 
     return (
-        <div>
+        <div className={classes.content}>
             {visibleTimer ?
                 <>
                     <DisplayComponent />
