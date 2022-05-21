@@ -11,9 +11,9 @@ const nextTomorrow = day3.format('YYYY.MM.DD');
 
 const initialState: ListState = {
     listTasks: [
-        {id: 1, todo: 'Задача 1', complete: false, minutes: '30', pomodoro: 1, date: today},
-        {id: 2, todo: 'Задача 3', complete: false, minutes: '30', pomodoro: 1, date: tomorrow},
-        {id: 3, todo: 'Задача 4', complete: false, minutes: '30', pomodoro: 2, date: nextTomorrow},
+        {id: 1, todo: 'Задача 1', complete: false, minutes: 30, pomodoro: 1, date: today},
+        {id: 2, todo: 'Задача 3', complete: false, minutes: 30, pomodoro: 1, date: tomorrow},
+        {id: 3, todo: 'Задача 4', complete: false, minutes: 30, pomodoro: 2, date: nextTomorrow},
     ],
     tasksOpen: [],
     tasksClosed: [],
@@ -52,7 +52,7 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                         id: state.listTasks.length ? state.listTasks[state.listTasks.length - 1].id + 1 : 1,
                         todo: action.payload.value,
                         complete: false,
-                        minutes: String(action.payload.pomodoro * 30),
+                        minutes: action.payload.pomodoro * 30,
 						pomodoro: action.payload.pomodoro,
                         date: action.payload.date || today,
                     }]
@@ -79,7 +79,7 @@ export const listReducer = (state = initialState, action: ListAction): ListState
         case ListTaskTypes.GET_REQUIRED_TIME:
             const requiredMin = state.listTasks.reduce((acc, elem) => {
                 if(elem.date === today) {
-                    return acc += +elem.minutes;
+                    return acc += elem.minutes;
                 }
                 return acc;
             }, 0);
@@ -91,7 +91,7 @@ export const listReducer = (state = initialState, action: ListAction): ListState
         case ListTaskTypes.GET_SPEND_TIME:
             const spendMin = state.tasksClosed.reduce((acc, elem) => {
                 if(elem.date === today) {
-                    return acc += +elem.minutes;
+                    return acc += elem.minutes;
                 }
                 return acc;
             }, 0);

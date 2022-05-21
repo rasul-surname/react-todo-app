@@ -6,18 +6,18 @@ interface InterfaceCard {
     id: number;
     title: string;
     onClick: () => void;
-    activeTask: number;
+    taskId: number;
 }
 
 const Card: React.FC<InterfaceCard> = (props) => {
-	const {listTasks} = useTypedSelector(state => state.listReducer);
-    const {id, title, onClick, activeTask} = props;
-    const active = id === activeTask;
+	const {tasksOpen} = useTypedSelector(state => state.listReducer);
+    const {id, title, onClick, taskId} = props;
+    const active = id === taskId;
 
     return (
         <div className={active ? classes.box + ' ' + classes.active : classes.box} onClick={() => onClick()} >
 			<div className={active ? classes.boxTime + ' ' + classes.active : classes.boxTime}>
-				{listTasks[id - 1].minutes}
+				{tasksOpen[id - 1].minutes}
 			</div>
             <p>{title}</p>
         </div>

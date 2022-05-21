@@ -10,7 +10,7 @@ const User = () => {
                     Расул
                 </p>
                 <p className={classes.user__text__status}>
-                    «Я на фронте, скажи маме, что скоро буду!»
+                    «Neque porro quisquam est qui dolorem ipsum»
                 </p>
             </div>
         </div>

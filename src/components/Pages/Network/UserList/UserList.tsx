@@ -11,11 +11,11 @@ const UserList = () => {
             />
             <User
                 name={"Илон Маск"}
-                status={"«Легко попасть в космос, но сложно достичь орбиты»"}
+                status={"«Neque porro quisquam est qui dolorem ipsum»"}
             />
             <User
                 name={"Уоррен Баффетт"}
-                status={"«Риск приходит от незнания того, что вы делаете»"}
+                status={"«Neque porro quisquam est qui dolorem ipsum»"}
             />
         </div>
     )

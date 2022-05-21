@@ -1,17 +1,15 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {useTypedSelector} from "../../../../hooks/useTypedSelector";
 import {buildStyles, CircularProgressbar} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import classes from './index.module.css';
+import classes from './DisplayComponent.module.css';
 
-const DisplayComponent: React.FC = () => {
-    const {time} = useTypedSelector(state => state.timeReducer);
-    const {seconds, minutes} = time;
+interface InterfaceDisplayComponent {
+    minutes: number;
+    seconds: number;
+}
+
+const DisplayComponent: React.FC<InterfaceDisplayComponent> = ({minutes, seconds}) => {
     const [changingSeconds, setChangingSeconds] = useState(minutes * 60);
-
-    useEffect(() => {
-        setChangingSeconds(changingSeconds - 1);
-    }, [seconds]);
 
     const timerMinutes = minutes >= 10 ? minutes : "0" + minutes;
     const timerSeconds = seconds >= 10 ? seconds : "0" + seconds;
@@ -21,6 +19,10 @@ const DisplayComponent: React.FC = () => {
     }, []);
 
     const percentage = (changingSeconds / totalSeconds * 100).toFixed(5);
+
+    useEffect(() => {
+        setChangingSeconds(changingSeconds - 1);
+    }, [seconds]);
 
     const red = '#f54e4e';
 
