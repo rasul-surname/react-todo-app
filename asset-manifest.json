@@ -1,18 +1,13 @@
 {
   "files": {
-    "main.css": "/react-sport-house/static/css/main.cca439ad.css",
-    "main.js": "/react-sport-house/static/js/main.5f4a9d12.js",
-    "static/media/train.svg": "/react-sport-house/static/media/train.d1a53eb0ad1e0b9d3a6b66c78602eb4b.svg",
-    "static/media/network.svg": "/react-sport-house/static/media/network.fdf0874d1567a8aaed9f556f72d915c2.svg",
-    "static/media/profile.svg": "/react-sport-house/static/media/profile.129a97393b479c7691634b78af832305.svg",
-    "static/media/programs.svg": "/react-sport-house/static/media/programs.f0f3e59cdcb720336140ed64e46d8221.svg",
+    "main.css": "/react-sport-house/static/css/main.c96a6b66.css",
+    "main.js": "/react-sport-house/static/js/main.8395440e.js",
     "index.html": "/react-sport-house/index.html",
-    "static/media/menu.svg": "/react-sport-house/static/media/menu.2ddfd8779c9a2cf31d32292c711fab29.svg",
-    "main.cca439ad.css.map": "/react-sport-house/static/css/main.cca439ad.css.map",
-    "main.5f4a9d12.js.map": "/react-sport-house/static/js/main.5f4a9d12.js.map"
+    "main.c96a6b66.css.map": "/react-sport-house/static/css/main.c96a6b66.css.map",
+    "main.8395440e.js.map": "/react-sport-house/static/js/main.8395440e.js.map"
   },
   "entrypoints": [
-    "static/css/main.cca439ad.css",
-    "static/js/main.5f4a9d12.js"
+    "static/css/main.c96a6b66.css",
+    "static/js/main.8395440e.js"
   ]
 }
