@@ -3,6 +3,7 @@ import {CgProfile} from "react-icons/cg";
 import {MdOutlineTimer} from "react-icons/md";
 import {BsCalendar3} from "react-icons/bs";
 import {BiNetworkChart} from "react-icons/bi";
+import {FiSettings} from "react-icons/fi";
 
 export const SideBarData = [
     {
@@ -27,6 +28,11 @@ export const SideBarData = [
         title: 'Network',
         path: '/network',
         icon: <BiNetworkChart/>,
+        cName: 'nav__text'
+    },{
+        title: 'Settings',
+        path: '/settings',
+        icon: <FiSettings/>,
         cName: 'nav__text'
     },
 ]

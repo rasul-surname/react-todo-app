@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import {store} from "./store";
 import {BrowserRouter} from "react-router-dom";
 import 'antd/dist/antd.css';
+import './reset.css';
 import './index.css';
 
 ReactDOM.render(
