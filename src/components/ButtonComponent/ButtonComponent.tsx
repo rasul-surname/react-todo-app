@@ -10,7 +10,7 @@ interface InterfaceButtonComponent {
 const ButtonComponent: React.FC<InterfaceButtonComponent> = ({value, size, onClick}) => {
 
     return (
-        <Button type="primary" size={size} onClick={onClick}>
+        <Button type="primary" size={size} onClick={onClick} >
             {value}
         </Button>
     );

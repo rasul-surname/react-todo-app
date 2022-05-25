@@ -9,7 +9,7 @@ const Profile = () => {
 
     return (
         <div className={classes.content}>
-            <User />
+            {/*<User />*/}
             <TasksOverview />
             <TasksToday />
         </div>

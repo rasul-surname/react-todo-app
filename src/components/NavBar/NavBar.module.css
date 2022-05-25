@@ -13,10 +13,6 @@
     align-items: center;
 }
 
-.navbar__indent {
-    /*margin-bottom: 100px;*/
-}
-
 .menu__bars {
     margin-left: 2rem;
     font-size: 2rem;
@@ -84,6 +80,9 @@
     color: #f5f5f5;
     background-color: #1a83ff;
 }
+.nav__text span {
+    margin-left: 16px;
+}
 
 .nav__menu__items {
     width: 100%;
@@ -96,8 +95,4 @@
     display: flex;
     justify-content: start;
     align-items: center;
-}
-
-span {
-    margin-left: 16px;
 }

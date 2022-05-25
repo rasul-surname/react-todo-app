@@ -1,6 +1,6 @@
 .box {
     display: flex;
-	flex-direction: column;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: white;
@@ -9,11 +9,13 @@
     height: 120px;
 
     flex-shrink: 0;
-	padding: 10px 0px;
-    margin-right: 20px;
-    background: #6B5FF0;
-    border: 1px solid #6B5FF0;
+    padding: 10px 0px;
+    background: #1890FF;
     border-radius: 8px;
+}
+
+.box:not(:last-child) {
+    margin-right: 20px;
 }
 
 .box.active {
@@ -22,18 +24,18 @@
 }
 
 .boxTime {
-	width: 60px;
-	height: 60px;
+    width: 60px;
+    height: 60px;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-	background-color: #9189F7;
-	border-radius: 50%;
+    background-color: #70BAFF;
+    border-radius: 50%;
 }
 
 .boxTime.active {
-	width: 70px;
-	height: 70px;
+    width: 70px;
+    height: 70px;
 }

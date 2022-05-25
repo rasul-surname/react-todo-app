@@ -1,23 +1,27 @@
 import React from 'react';
-import { useTypedSelector } from '../../../../../hooks/useTypedSelector';
+import {useDispatch} from "react-redux";
+import {addActiveTask} from "../../../../../store/action_creators/list";
 import classes from './Card.module.css';
 
 interface InterfaceCard {
     id: number;
     title: string;
-    onClick: () => void;
-    taskId: number;
+    minutes: number;
+    activeTaskId: number;
 }
 
-const Card: React.FC<InterfaceCard> = (props) => {
-	const {tasksOpen} = useTypedSelector(state => state.listReducer);
-    const {id, title, onClick, taskId} = props;
-    const active = id === taskId;
+const Card: React.FC<InterfaceCard> = ({id, title, minutes, activeTaskId}) => {
+    const dispatch = useDispatch();
+    const active = id === activeTaskId;
+
+    function addTask(id: number, title: string, minutes: number) {
+        dispatch(addActiveTask(id, title, minutes))
+    }
 
     return (
-        <div className={active ? classes.box + ' ' + classes.active : classes.box} onClick={() => onClick()} >
+        <div className={active ? classes.box + ' ' + classes.active : classes.box} onClick={() => addTask(id, title, minutes)} >
 			<div className={active ? classes.boxTime + ' ' + classes.active : classes.boxTime}>
-				{tasksOpen[id - 1].minutes}
+				{minutes}
 			</div>
             <p>{title}</p>
         </div>

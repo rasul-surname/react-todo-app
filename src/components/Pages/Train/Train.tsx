@@ -1,39 +1,44 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {addActiveTask} from "../../../store/action_creators/list";
 
 import DisplayComponent from "./DisplayComponent/DisplayComponent";
 import BtnComponent from "./BtnComponent/BtnComponent";
 import CardsTasks from "./CardsTasks/CardsTasks";
 import SplashScreen from "./SplashScreen/SplashScreen";
 
+import {GiHamburgerMenu} from "react-icons/gi";
 import classes from "./Train.module.css";
 
-const Train: React.FC = () => {
-    const {tasksOpen} = useTypedSelector(state => state.listReducer);
 
-    const [time, setTime] = useState({minutes: 0, seconds: 0});
+const Train: React.FC = () => {
+    const dispatch = useDispatch();
+    const {tasksOpen} = useTypedSelector(state => state.listReducer);
+    const {activeTask} = useTypedSelector(state => state.listReducer);
+
+    const [timerId, setTimerId] = useState<any>();
+    const [visibleBtn, setVisibleBtn] = useState<boolean>(true);
+    const [visibleTimer, setVisibleTimer] = useState(false);
+
+    const [time, setTime] = useState({minutes: activeTask.minutes, seconds: 0});
     let updateM = time.minutes;
     let updateS = time.seconds;
 
-    const [timerId, setTimerId] = useState<any>();
-    const [taskId, setTaskId] = useState(0);
-    const [visibleBtn, setVisibleBtn] = useState<boolean>(true);
-    const [visibleTimer, setVisibleTimer] = useState(false);
+    useEffect(() => {
+        if(tasksOpen.length !== 0) {
+            dispatch(addActiveTask(tasksOpen[0].id, tasksOpen[0].todo, tasksOpen[0].minutes));
+        }
+    }, [tasksOpen]);
+
+    useEffect(() => {
+        setTime({minutes: activeTask.minutes, seconds: 0});
+    }, [activeTask]);
 
     function start() {
         run();
         setVisibleBtn(false);
         setTimerId(setInterval(run, 1000));
-    }
-
-    useEffect(() => {
-        if (tasksOpen.length > 0 && tasksOpen.length !== 0) {
-            connectTime(tasksOpen[0]);
-        }
-    }, []);
-
-    function connectTime(elem: any) {
-        setTaskId(elem.id);
     }
 
     function stop() {
@@ -57,16 +62,21 @@ const Train: React.FC = () => {
 
     return (
         <div className={classes.content}>
-            {visibleTimer ?
-                <>
-                    <DisplayComponent minutes={time.minutes} seconds={time.seconds}/>
-                    <BtnComponent start={start} stop={stop} visibleBtn={visibleBtn}/>
-                </>
-                :
-                <>
-                    <SplashScreen onClick={() => setVisibleTimer(!visibleTimer)}/>
-                    <CardsTasks list={tasksOpen} onClick={connectTime} taskId={taskId}/>
-                </>
+            {tasksOpen.length === 0 ?
+                <h1>У вас нет задач</h1>
+            : visibleTimer ?
+                    <>
+                        <DisplayComponent minutes={time.minutes} seconds={time.seconds}/>
+                        <BtnComponent start={start} stop={stop} visibleBtn={visibleBtn}/>
+                    </>
+                    :
+                    <>
+                        <p className={classes.content__title}>{activeTask.todo}</p>
+                        <SplashScreen onClick={() => setVisibleTimer(!visibleTimer)}/>
+                        <GiHamburgerMenu />
+                        <p className={classes.content__subtitle}>Задачи</p>
+                        <CardsTasks activeTaskId={activeTask.id} />
+                    </>
             }
         </div>
     );

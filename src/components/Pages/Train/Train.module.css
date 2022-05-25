@@ -1,4 +1,25 @@
 .content {
     max-width: 500px;
+    text-align: center;
+
+    padding: 20px;
     margin: 0 auto;
+
+    background-color: #fff;
+    border: 1px solid #DCE1E5;
+    border-radius: 8px;
+}
+
+.content__title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.content__subtitle {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: left;
+    margin: 0px 0px 10px;
 }

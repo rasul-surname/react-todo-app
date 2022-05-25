@@ -1,6 +1,6 @@
 .row {
     display: flex;
+    justify-content: left;
     align-items: center;
     overflow: auto;
-    margin: 20px 0px;
 }

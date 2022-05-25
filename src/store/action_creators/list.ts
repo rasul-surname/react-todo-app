@@ -7,3 +7,5 @@ export const removeTaskList = (id: number) => ({type: ListTaskTypes.REMOVE_TASK_
 export const changeCompleteTask = (id: number, checked: boolean) => ({type: ListTaskTypes.CHANGE_COMPLETE_TASK, payload: {id, checked}});
 export const getRequiredTime = () => ({type: ListTaskTypes.GET_REQUIRED_TIME});
 export const getSpendTime = () => ({type: ListTaskTypes.GET_SPEND_TIME});
+export const addActiveTask = (id: number, todo: string, minutes: number) => ({type: ListTaskTypes.ADD_ACTIVE_TASK, payload: {id, todo, minutes}});
+

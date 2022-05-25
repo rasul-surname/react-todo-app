@@ -1,10 +1,11 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
-import { Button, Modal, Row } from 'antd';
+import { Modal, Row } from 'antd';
 import EventCalendar from './EventCalendar/EventCalendar';
 import EventForm from './EventForm/EventForm';
+import ButtonComponent from "../../ButtonComponent/ButtonComponent";
 import classes from './Programs.module.css';
-import clsx from "clsx";
+
 
 const Programs = () => {
 	const {listTasks} = useTypedSelector(state => state.listReducer);
@@ -16,7 +17,7 @@ const Programs = () => {
 	}
 
     return (
-        <div className={clsx(classes.content, classes.wrapper)}>
+        <div className={classes.content}>
 			<Modal
 				title="Добавить задачу"
 				visible={modalVisible}
@@ -25,14 +26,12 @@ const Programs = () => {
 			>
 				<EventForm submit={addNewTask} />
 			</Modal>
-			<Row justify="center">
-				<Button
-					onClick={() => setVisible(true)}
-				>
-					Добавить задачу
-				</Button>
+			<Row justify="center" className={classes.content__btn}>
+				<ButtonComponent value={'Добавить задачу'} size={'large'} onClick={() => setVisible(true)} />
 			</Row>
-            <EventCalendar events={listTasks} />
+			<div className={classes.content__table}>
+				<EventCalendar events={listTasks} />
+			</div>
         </div>
     );
 }

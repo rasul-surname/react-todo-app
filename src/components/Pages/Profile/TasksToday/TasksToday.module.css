@@ -1,14 +1,14 @@
 .container {
-    border: 1px solid #D7D7D7;
+    background-color: #fff;
+    border: 1px solid #DCE1E5;
     border-radius: 8px;
+    padding: 20px;
 }
 
 .btnVisible {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 10px;
 }
 
 .title {
@@ -17,6 +17,5 @@
 }
 
 .container__box {
-    padding: 0px 10px;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }

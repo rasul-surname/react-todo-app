@@ -21,6 +21,7 @@ const initialState: ListState = {
     requiredMinutes: 0,
     spendHours: 0,
     spendMinutes: 0,
+    activeTask: {id: 0, todo: 'no', minutes: 0},
 }
 
 export const listReducer = (state = initialState, action: ListAction): ListState => {
@@ -99,6 +100,15 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                 ...state,
                 spendHours: Math.trunc(spendMin/60),
                 spendMinutes: spendMin % 60
+            }
+        case ListTaskTypes.ADD_ACTIVE_TASK:
+            return {
+                ...state,
+                activeTask: {
+                    id: action.payload.id,
+                    todo: action.payload.todo,
+                    minutes: action.payload.minutes,
+                }
             }
         default:
             return state;

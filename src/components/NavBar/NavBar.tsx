@@ -21,12 +21,11 @@ const NavBar: React.FC = () => {
                         <RiMenuUnfoldFill onClick={showSidebar}/>
                     </Link>
                 </div>
-                <div className={classes.navbar__indent}></div>
                 <nav className={sidebar ? classes.nav__menu + ' ' + classes.nav__menu__active : classes.nav__menu}>
-                    <ul className={classes.nav__menu__items}>
+                    <ul className={classes.nav__menu__items} onClick={showSidebar}>
                         <li className={classes.navbar__toggle}>
                             <Link to='#' className={classes.menu__bars}>
-                                <RiMenuFoldFill onClick={showSidebar}/>
+                                <RiMenuFoldFill/>
                             </Link>
                         </li>
                         {SideBarData.map((item: any, index: number) => {

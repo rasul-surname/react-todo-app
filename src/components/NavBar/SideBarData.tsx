@@ -7,30 +7,30 @@ import {FiSettings} from "react-icons/fi";
 
 export const SideBarData = [
     {
-        title: 'Profile',
+        title: 'Профиль',
         path: '/react-sport-house',
         icon: <CgProfile/>,
         cName: 'nav__text'
     },
     {
-        title: 'Train',
+        title: 'Тренировка',
         path: '/train',
         icon: <MdOutlineTimer/>,
         cName: 'nav__text'
     },
     {
-        title: 'Programs',
+        title: 'Календарь',
         path: '/programs',
         icon: <BsCalendar3/>,
         cName: 'nav__text'
     },
     {
-        title: 'Network',
+        title: 'Комьюнити',
         path: '/network',
         icon: <BiNetworkChart/>,
         cName: 'nav__text'
     },{
-        title: 'Settings',
+        title: 'Настройки',
         path: '/settings',
         icon: <FiSettings/>,
         cName: 'nav__text'
