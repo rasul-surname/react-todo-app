@@ -1,0 +1,13 @@
+.content {
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.content:not(:last-child) {
+    margin-right: 10px;
+}
+
+.content__active {
+    color: #fff;
+    background-color: #3BA6FF;
+}

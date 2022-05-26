@@ -23,7 +23,7 @@ const EventForm: React.FC<InterfaceEventForm> = (props) => {
 	}
 
 	function submitForm() {
-		dispatch(addTaskList(event.description, pomodoro, event.date));
+		dispatch(addTaskList(event.description, pomodoro, '', event.date));
 		props.submit();
 	}
 

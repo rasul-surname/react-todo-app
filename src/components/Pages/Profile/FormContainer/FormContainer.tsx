@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addTaskList} from "../../../../store/action_creators/list";
+
+import TimeList from "./TimeList/TimeList";
+import ProjectList from "./ProjectList/ProjectList";
+
 import {Button, Form, Input, Modal} from "antd";
 import {PlusCircleTwoTone } from "@ant-design/icons";
-import TimeList from "./TimeList/TimeList";
+
 import clsx from 'clsx'
 import classes from './FormContainer.module.css';
 
@@ -14,6 +18,7 @@ const FormContainer: React.FC = () => {
 	const [disabled, setDisable] = useState(false);
     const [confirmLoading, setConfirmLoading] = React.useState(false);
 	const [pomodoro, setPomodoro] = useState<number>(1);
+	const [project, setProject] = useState<string>('Спорт');
 	const minLengthInput = 3;
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +46,7 @@ const FormContainer: React.FC = () => {
 			setDisable(false);
 			setConfirmLoading(true);
 
-			dispatch(addTaskList(value, pomodoro));
+			dispatch(addTaskList(value, pomodoro, project));
 			setValue('');
 	
 			setTimeout(() => {
@@ -83,6 +88,7 @@ const FormContainer: React.FC = () => {
 					''
 				}
 				<TimeList setPomodoro={setPomodoro} />
+				<ProjectList project={project} setProject={setProject} />
             </Modal>
         </Form>
     );

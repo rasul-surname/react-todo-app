@@ -21,9 +21,9 @@ const TimeList: React.FC<InterfaceTimeList> = ({setPomodoro}) => {
 	}
 
 	return (
-		<>
-			<p className={classes.title}>ожидаемое количество томатов</p>
-			<div className={classes.row}>
+		<div className={classes.content}>
+			<p className={classes.content__title}>Ожидаемое количество томатов</p>
+			<div className={classes.content__row}>
 			{pomodoroList.map((elem) => {
 				return (
 					<TimeSelect
@@ -37,7 +37,7 @@ const TimeList: React.FC<InterfaceTimeList> = ({setPomodoro}) => {
 				)
 			})}
 		</div>
-		</>
+		</div>
 	)
 }
 

@@ -11,9 +11,10 @@ const nextTomorrow = day3.format('YYYY.MM.DD');
 
 const initialState: ListState = {
     listTasks: [
-        {id: 1, todo: 'Задача 1', complete: false, minutes: 30, pomodoro: 1, date: today},
-        {id: 2, todo: 'Задача 3', complete: false, minutes: 30, pomodoro: 1, date: tomorrow},
-        {id: 3, todo: 'Задача 4', complete: false, minutes: 30, pomodoro: 2, date: nextTomorrow},
+        {id: 1, todo: 'Задача 1', complete: false, minutes: 30, pomodoro: 1, date: today, project: 'Работа'},
+        {id: 2, todo: 'Задача 3', complete: false, minutes: 30, pomodoro: 1, date: tomorrow, project: 'Спорт'},
+        {id: 3, todo: 'Задача 4', complete: false, minutes: 30, pomodoro: 2, date: nextTomorrow, project: 'Учёба'},
+        {id: 4, todo: 'Задача 5', complete: false, minutes: 30, pomodoro: 2, date: today, project: 'Кодинг'},
     ],
     tasksOpen: [],
     tasksClosed: [],
@@ -22,6 +23,12 @@ const initialState: ListState = {
     spendHours: 0,
     spendMinutes: 0,
     activeTask: {id: 0, todo: 'no', minutes: 0},
+    projects: [
+        {id: 1, value: 'Спорт'},
+        {id: 2, value: 'Кодинг'},
+        {id: 3, value: 'Работа'},
+        {id: 4, value: 'Учёба'},
+    ],
 }
 
 export const listReducer = (state = initialState, action: ListAction): ListState => {
@@ -56,6 +63,7 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                         minutes: action.payload.pomodoro * 30,
 						pomodoro: action.payload.pomodoro,
                         date: action.payload.date || today,
+                        project: action.payload.project,
                     }]
             }
         case ListTaskTypes.REMOVE_TASK_LIST:
