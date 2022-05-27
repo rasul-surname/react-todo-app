@@ -34,6 +34,11 @@ const initialState: ListState = {
 export const listReducer = (state = initialState, action: ListAction): ListState => {
     switch (action.type) {
         case ListTaskTypes.FETCH_LIST_TASKS:
+            const sortFunction = (a:any, b:any) => {
+                return a.project > b.project ? 1 : -1;
+            }
+            state.listTasks.sort(sortFunction);
+
             return {
                 ...state,
                 tasksOpen: [
@@ -52,12 +57,17 @@ export const listReducer = (state = initialState, action: ListAction): ListState
                 ]
             }
         case ListTaskTypes.ADD_TASK_LIST:
+            const maxTaskId = state.listTasks.reduce((acc, elem) => {
+                acc = acc <= elem.id ? elem.id + 1 : acc;
+                return acc;
+            }, 1);
+
             return {
                 ...state,
                 listTasks: [
                     ...state.listTasks,
                     {
-                        id: state.listTasks.length ? state.listTasks[state.listTasks.length - 1].id + 1 : 1,
+                        id: maxTaskId,
                         todo: action.payload.value,
                         complete: false,
                         minutes: action.payload.pomodoro * 30,

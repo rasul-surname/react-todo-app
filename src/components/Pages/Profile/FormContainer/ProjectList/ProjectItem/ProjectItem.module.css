@@ -11,3 +11,13 @@
     color: #fff;
     background-color: #3BA6FF;
 }
+
+@media (max-width: 400px) {
+    .content {
+        padding: 3px 6px;
+    }
+
+    .content:not(:last-child) {
+        margin-right: 5px;
+    }
+}

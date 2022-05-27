@@ -33,15 +33,27 @@ const ListTasks: React.FC<InterfaceListTasks> = ({list}) => {
     return (
         <ul>
             {
-                list.map((elem) => (
-                    <ListTasksItem 
-						id={elem.id} 
-						todo={elem.todo} 
-						complete={elem.complete} 
-						pomodoro={elem.pomodoro} 
-						onChange={onChange} 
-						removeTask={removeTask} 
-					/>
+                list.map((elem, index, arr) => (
+                    <div>
+                        <p>
+                            {arr[index - 1] ?
+                                arr[index - 1].project === arr[index].project ?
+                                    ''
+                                    :
+                                    elem.project
+                                :
+                                elem.project
+                            }
+                        </p>
+                        <ListTasksItem
+                            id={elem.id}
+                            todo={elem.todo}
+                            complete={elem.complete}
+                            pomodoro={elem.pomodoro}
+                            onChange={onChange}
+                            removeTask={removeTask}
+                        />
+                    </div>
                 ))
             }
         </ul>
