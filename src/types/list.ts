@@ -1,5 +1,5 @@
 export interface ListState {
-    listTasks: { id: number, todo: string, complete: boolean, minutes: number, pomodoro: number, date: any, project: string }[];
+    listTasks: { id: number, todo: string, complete: boolean, minutes: number, pomodoro: number, date: any, dayWeek: any; project: string }[];
     tasksOpen: any[];
     tasksClosed: any[];
     requiredHours: number;

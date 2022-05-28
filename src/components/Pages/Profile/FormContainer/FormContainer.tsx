@@ -2,11 +2,12 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addTaskList} from "../../../../store/action_creators/list";
 
+import {formatDate} from "../../../../utils/date";
+import {Button, DatePicker, Form, Input, Modal} from "antd";
+import {PlusCircleTwoTone } from "@ant-design/icons";
+
 import TimeList from "./TimeList/TimeList";
 import ProjectList from "./ProjectList/ProjectList";
-
-import {Button, Form, Input, Modal} from "antd";
-import {PlusCircleTwoTone } from "@ant-design/icons";
 
 import clsx from 'clsx'
 import classes from './FormContainer.module.css';
@@ -17,9 +18,16 @@ const FormContainer: React.FC = () => {
     const [visible, setVisible] = React.useState(false);
 	const [disabled, setDisable] = useState(false);
     const [confirmLoading, setConfirmLoading] = React.useState(false);
-	const [pomodoro, setPomodoro] = useState<number>(1);
+    const [event, setEvent] = useState({description: '', date: ''});
+    const [pomodoro, setPomodoro] = useState<number>(1);
 	const [project, setProject] = useState<string>('Спорт');
 	const minLengthInput = 3;
+
+    const selectDate = (date: any) => {
+        if(date) {
+            setEvent({...event, date: formatDate(date.toDate())});
+        }
+    }
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if(event.target.value.trim().length >= minLengthInput) {
@@ -46,7 +54,7 @@ const FormContainer: React.FC = () => {
 			setDisable(false);
 			setConfirmLoading(true);
 
-			dispatch(addTaskList(value, pomodoro, project));
+			dispatch(addTaskList(value, pomodoro, project, event.date));
 			setValue('');
 	
 			setTimeout(() => {
@@ -72,7 +80,8 @@ const FormContainer: React.FC = () => {
                 onOk={handleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
-            >	
+            >
+                <p>Название задачи</p>
                 <Input
                     value={value}
                     onChange={changeHandler}
@@ -87,6 +96,12 @@ const FormContainer: React.FC = () => {
 					:
 					''
 				}
+                <p>Дата события</p>
+                <DatePicker
+                    style={{width: '100%'}}
+                    placeholder="Выберите дату задачи"
+                    onChange={(date) => selectDate(date)}
+                />
 				<TimeList setPomodoro={setPomodoro} />
 				<ProjectList project={project} setProject={setProject} />
             </Modal>
