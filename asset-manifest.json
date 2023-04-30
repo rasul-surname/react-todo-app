@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-sport-house/static/css/main.f30d77b7.css",
-    "main.js": "/react-sport-house/static/js/main.0352fb5f.js",
-    "static/media/train_animation.png": "/react-sport-house/static/media/train_animation.faab21c39d102f1b8b60.png",
-    "index.html": "/react-sport-house/index.html",
-    "main.f30d77b7.css.map": "/react-sport-house/static/css/main.f30d77b7.css.map",
-    "main.0352fb5f.js.map": "/react-sport-house/static/js/main.0352fb5f.js.map"
+    "main.css": "/sport-house/static/css/main.a32c2aab.css",
+    "main.js": "/sport-house/static/js/main.34154257.js",
+    "static/media/train_animation.png": "/sport-house/static/media/train_animation.faab21c39d102f1b8b60.png",
+    "index.html": "/sport-house/index.html",
+    "main.a32c2aab.css.map": "/sport-house/static/css/main.a32c2aab.css.map",
+    "main.34154257.js.map": "/sport-house/static/js/main.34154257.js.map"
   },
   "entrypoints": [
-    "static/css/main.f30d77b7.css",
-    "static/js/main.0352fb5f.js"
+    "static/css/main.a32c2aab.css",
+    "static/js/main.34154257.js"
   ]
 }
