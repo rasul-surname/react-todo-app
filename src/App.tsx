@@ -16,7 +16,7 @@ const App: React.FC = () => {
             <NavBar/>
             <div className="content">
                 <Routes>
-                    <Route path='/react-sport-house' element={<Profile/>}/>
+                    <Route path='/sport-house' element={<Profile/>}/>
                     <Route path='/train' element={<Train/>}/>
                     <Route path='/programs' element={<Programs/>}/>
                     <Route path='/network' element={<Network/>}/>

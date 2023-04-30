@@ -8,7 +8,7 @@ import {FiSettings} from "react-icons/fi";
 export const SideBarData = [
     {
         title: 'Профиль',
-        path: '/react-sport-house',
+        path: '/sport-house',
         icon: <CgProfile/>,
         cName: 'nav__text'
     },
